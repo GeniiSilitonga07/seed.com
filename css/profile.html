@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>It's my profile</title>
+ 	<meta charset="utf-8" />
+ 	<style type="text/css">
+ 		p {
+ 			background-color: rgb(163, 163, 224);
+ 			border: 2px dashed yellowgreen;
+ 		}
+ 	</style>
+ 	<link rel="stylesheet" type="text/css" href="style.css">
+ 	<script src="F:\w2s2p_12S16024_genii\with_jquery\js\jquery.js"></script>
+ 	<script src="F:\w2s2p_12S16024_genii\with_jquery\js\apps.js"></script>
+ 	<script lang="javasript">
+ 		window.onload = function(){
+ 			alert("welcome to my profile!");
+ 			randomizeFruit("fav-fruit");
+ 		}
+ 	</script>
+</head>
+
+<body>
+ 	<h1>Hi all, I am Wiro Sableng</h1>
+ 	<img class="profile-picture" src="F:\w2s2p_12S16024_genii\with_jquery\images\wiro.jpg" />
+ 	<p>I love eating fruits.</p>
+ 	<p style="font-size: 20px;">The best fruit is <u id = "fav-fruit">Apple</u>.</p>
+ 	<a href="testimony.html">give testimony</a>
+ 	<a id="voting" href="fruit_voting.html">fruit voting</a>
+ 	<input type = "button" onclick="changeBackground();" value="change background">
+</body>
+
+</html>

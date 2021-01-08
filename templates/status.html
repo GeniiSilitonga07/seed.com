@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Wiro Sableng</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">Wiro Sableng</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                     <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="shop.php">Shop</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="status.php">Status</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="testimonials.php">Testmonials</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="fruit_voting.php">Fruit Voting</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="fruit_almanac.php">Fruit Almanac</a>
+                </li>
+                {% if not loggedIn %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="register.php">Register</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="cart.php">My Cart</a>
+                </li>
+                {% endif %}
+                <li class="nav-item active">
+                    {% if loggedIn %}
+                        <a class="nav-link" href="process_logout.php">Logout ( {{loggedInUser["full_name"]}} )
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="login.php">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav> 
+    <div class="container" style="margin-top:20px">
+      <div class="row">
+        <div class="col-md-4 offset-md-1">
+          <h1 class="text-center">Wiro Sableng</h1>
+            <img class="rounded-circle w-50 mx-auto d-block" src="images/wiro.jpg">
+            <p class="text-center">I live in Java island, Indonesia. FruitLapak is my startup that focus on developing fruit-related software. It is green and delicious.
+            </p>
+        </div>
+        <div class="col-md-6">
+          {% if loggedIn and loggedInUser["owner"] %}
+          <form method="post" action="add_status.php">
+            <div class="row">
+              <div class="col-md-12">
+                <textarea name="text" class="form-control" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-md-3 offset-md-9">
+                <input class="btn btn-success btn-block" type="submit" value="Post">
+              </div>
+            </div>
+          </form>
+          {% else %}
+
+          {% endif %}
+          <div id="statuses">
+            {% for status in statuses %}
+            <div class="row">
+              <div class="col-md-12">
+                <hr>
+                <p>{{ status["text"] }}
+                  <span class="small font-italic">
+                    {{ status["published_at"] }}
+                  </span>
+                </p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

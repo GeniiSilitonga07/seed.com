@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Seed</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/typed.js"></script>
+        
+        <script>
+            window.onload = function () {
+                var typed = new Typed('.typing-effect', {
+                    strings: [
+                        "Suppplier kami terpercaya.",
+                        "Benih dan bibit supplier kami baik.",
+                        "Kami bertanggung jawab untuk semua transaksi yang terjadi.",
+                        "Anda dapat mempercayai kami dan supplier kami.",
+                    ],
+                    typeSpeed: 50,
+                    backDelay: 1500,
+                    loop: 1
+                });
+            }
+        </script> 
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">Seed</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                     <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="shop.php">Shop</a>
+                </li>
+                <!-- <li class="nav-item active">
+                     <a class="nav-link" href="status.php">Status</a>
+                </li> -->
+                <li class="nav-item active">
+                     <a class="nav-link" href="testimonials.php">Testmonials</a>
+                </li>
+                <!-- <li class="nav-item active">
+                     <a class="nav-link" href="fruit_voting.php">Fruit Voting</a>
+                </li> -->
+                <!-- <li class="nav-item active">
+                     <a class="nav-link" href="fruit_almanac.php">Fruit Almanac</a>
+                </li> -->
+                {% if not loggedIn %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="register.php">Register</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="cart.php">My Cart</a>
+                </li>
+                {% endif %}
+                <li class="nav-item active">
+                    {% if loggedIn %}
+                        <a class="nav-link" href="process_logout.php">Logout ( {{loggedInUser["full_name"]}} )
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="login.php">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 offset-md-1">
+                        <img class="rounded-circle w-50 mx-auto d-block" src="images/wiro.jpg"> 
+                    </div>
+                    <div class="col-md-8">
+                        <h1>Selamat Datang</h1>
+                        <h2><span class="typing-effect"></span></h2>
+                        <p>Temukan dan beli benih ataupun bibit anda untuk keperluan pengembangan kebun anda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Lastest status</h3>
+                    <div id = "statuses">
+                        <hr>
+                        <p class="font-weight-bold">
+                            {{statuses["text"]}}                  
+                        </p><p> 
+                        <span class="small font-italic">                  
+                            {{statuses["published_at"]}}                 
+                        </span> 
+                        </p>
+                    </div>      
+                </div>
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded-circle" src="{{ most_voted["image"] }}">
+                        </div> 
+                        <div class="col-md-8">
+                        <h3>Most voted fruit</h3>
+                        <p><span> {{ most_voted["name"] }}</span> is the most voted fruit. The latin 
+                            name of this fruit is <i><span>{{most_voted["latin"]}}</span></i>.
+                            We can find this kind of fruit in <span> {{most_voted["color"]}}</span>.
+                            It gets <span> {{most_voted["vote"]}}</span> votes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded-circle" src="{{ last_added["image"] }}">
+                        </div>
+                        <div class="col-md-8">
+                            <h3>{{ last_added["name"] }}<span class="badge badge-primary">New</span></h3>
+                            <p>Welcome to the competition! The latin name of this 
+                               fruit is <i><span>{{ last_added["latin"] }}</span></i>.
+                               We can find this kind of fruit in <span>{{ last_added["color"] }}</span>.</p>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

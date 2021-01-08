@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Wiro Sableng</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="css/style.css">
+	<title>Fruit Almanac</title>
+
+	<script lang="javascript">
+		let fruitSeq = 0;
+		window.onload = function(){
+			loadFruit(true);
+		}
+	</script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">Wiro Sableng</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                     <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="shop.php">Shop</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="status.php">Status</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="testimonials.php">Testmonials</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="fruit_voting.php">Fruit Voting</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="fruit_almanac.php">Fruit Almanac</a>
+                </li>
+                {% if not loggedIn %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="register.php">Register</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="cart.php">My Cart</a>
+                </li>
+                {% endif %}
+                <li class="nav-item active">
+                    {% if loggedIn %}
+                        <a class="nav-link" href="process_logout.php">Logout ( {{loggedInUser["full_name"]}} )
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="login.php">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 offset-md-3">
+				<center><h1>Fruit Almanac</h1></center>
+				<div>
+					<table class="table">
+						<tr>
+							<td rowspan="4" , colspan="1">
+								<div class="card bg-success">
+									<div class="card-body text-center">
+										<img id="picture" src="" class="rounded-circle w-50 mx-auto d-block card-img-top">
+							</td>
+						</tr>
+						<tr>
+							<td>Name</td>
+							<td>:</td>
+							<td><span id="name"></span></td>
+						</tr>
+						<tr>
+							<td>Latin</td>
+							<td>:</td>
+
+							<td><span id="latin"></span></td>
+						</tr>
+							<td>Color</td>
+							<td>:</td>
+							<td><span id="color"></span></td>
+						</tr>
+					</table>
+					<div class="row">
+						<div class="col-md-4">
+							<input type="button" onclick="loadFruit(false)" class="btn btn-block btn-primary" value="previous">
+						</div>
+						<div class="col-md-4 offset-md-4">
+							<input type="button" onclick="loadFruit(true)" class="btn btn-block btn-success" value="next">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+     <script src="js/jquery.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script src="js/apps.js"></script> 
+</div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Wiro Sableng</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initialscale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/typed.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">Wiro Sableng</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                     <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="shop.php">Shop</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="status.php">Status</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="testimonials.php">Testmonials</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="fruit_voting.php">Fruit Voting</a>
+                </li>
+                <li class="nav-item active">
+                     <a class="nav-link" href="fruit_almanac.php">Fruit Almanac</a>
+                </li>
+                {% if not loggedIn %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="register.php">Register</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="cart.php">My Cart</a>
+                </li>
+                {% endif %}
+                <li class="nav-item active">
+                    {% if loggedIn %}
+                        <a class="nav-link" href="process_logout.php">Logout ( {{loggedInUser["full_name"]}} )
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="login.php">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    <div class="container" style="margin-top:20px">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="rounded-circle w-50 mx-auto d-block" src="images/wiro.jpg"> </div>
+            <div class="col-md-9">
+                <h1>Fruit Voting</h1>
+                <h3>According to you, which one of the following fruit is the best?
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top:20px">
+        <div class="card-group">
+            <div class="card bg-primary">
+                <div class="card-body text-center">
+                    <h4 class="card-title">
+                        {{ view[0]["name"] }}
+                    </h4>
+                    <img class="rounded-circle w-50 mx-auto d-block card-img-top" src="{{ view[0]["image"] }}">
+                    <p class="card-text font-weight-bold">
+                        {{ view[0]["vote"] }} votes</p>
+                    <form action="vote.php" method="post">
+                        <input type="hidden" name="voted_fruit" value="{{ view[0]["id"] }}">
+                        {% if loggedIn and loggedInUser["owner"] %}
+
+                        {% else %}
+                        <input type="submit" class="btn btn-dark btn-block"value="Vote!">
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            <div class="card bg-warning">
+                <div class="card-body text-center">
+                <h4 class="card-title">
+                    {{ view[1]["name"] }}
+                    </h4>
+                    <img class="rounded-circle w-50 mx-auto d-block card-img-top" src="{{ view[1]["image"] }}">
+                    <p class="card-text font-weight-bold">
+                        {{ view[1]["vote"] }} votes</p>
+                    <form action="vote.php" method="post">
+                        <input type="hidden" name="voted_fruit" value="{{ view[1]["id"] }}">
+                        {% if loggedIn and loggedInUser["owner"] %}
+                        
+                        {% else %}
+                        <input type="submit" class="btn btn-dark btn-block"value="Vote!">
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            <div class="card bg-success">
+                <div class="card-body text-center">
+                <h4 class="card-title">
+                    {{ view[2]["name"] }}
+                    </h4>
+                    <img class="rounded-circle w-50 mx-auto d-block card-img-top" src="{{ view[2]["image"] }}">
+                    <p class="card-text font-weight-bold">
+                        {{ view[2]["vote"] }} votes</p>
+                    <form action="vote.php" method="post">
+                        <input type="hidden" name="voted_fruit" value="{{ view[2]["id"] }}">
+                        {%if loggedIn and loggedInUser["owner"] %}
+                        
+                        {% else %}
+                        <input type="submit" class="btn btn-dark btn-block"value="Vote!">
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            <div class="card bg-danger">
+                <div class="card-body text-center">
+                <h4 class="card-title">
+                    {{ view[3]["name"] }}
+                    </h4>
+                    <img class="rounded-circle w-50 mx-auto d-block card-img-top" src="{{ view[3]["image"] }}">
+                    <p class="card-text font-weight-bold">
+                        {{ view[3]["vote"] }} votes</p>
+                    <form action="vote.php" method="post">
+                        <input type="hidden" name="voted_fruit" value="{{ view[3]["id"] }}">
+                        {% if loggedIn and loggedInUser["owner"] %}
+                        
+                        {% else %}
+                        <input type="submit" class="btn btn-dark btn-block"value="Vote!">
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
